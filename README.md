@@ -25,12 +25,12 @@ Basic use:
 
 `python3 Sentinel2_RGBI_NDVI.py -f /path/to/folder`
 
-Add `-ndvi` to tell the script to generate NDVI JP2 files. 
-Add `-rgbi` to tell the script to generate Red, Green, Blue, Near-Infrared JP2 files. 
+Add `-ndvi` to tell the script to generate NDVI JP2 files.   
+Add `-rgbi` to tell the script to generate Red, Green, Blue, Near-Infrared JP2 files.   
 
 ## Current version 0.1.0
 
 ## Future versions 
 
-1.0 - Rewritten in an object oriented class based way. 
-1.1 - File Name Parsing for custom file name conventions, aim to be like `%yyyy-%mm-%dd` style. 
+1.0 - Rewritten in an object oriented class based way.   
+1.1 - File Name Parsing for custom file name conventions, aim to be like `%yyyy-%mm-%dd` style.   
