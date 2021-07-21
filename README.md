@@ -28,11 +28,10 @@ Basic use:
 Add `-ndvi` to tell the script to generate NDVI JP2 files.   
 Add `-rgbi` to tell the script to generate Red, Green, Blue, Near-Infrared JP2 files.   
 
-## Current version 0.1.0  
+## Current version 0.2.0  
   
 ## Future versions   
-  
-0.2 - Documentation added  
+
 0.3 - Type hints  
 1.0 - Rewritten in an object oriented class based way.     
 1.1 - File Name Parsing for custom file name conventions, aim to be like `%yyyy-%mm-%dd` style.     
