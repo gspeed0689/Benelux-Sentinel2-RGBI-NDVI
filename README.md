@@ -32,5 +32,7 @@ Add `-rgbi` to tell the script to generate Red, Green, Blue, Near-Infrared JP2 f
 
 ## Future versions 
 
+0.2 - Documentation added
+0.3 - Type hints
 1.0 - Rewritten in an object oriented class based way.   
 1.1 - File Name Parsing for custom file name conventions, aim to be like `%yyyy-%mm-%dd` style.   
