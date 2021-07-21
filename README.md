@@ -23,7 +23,7 @@ The Sentinel2_RGBI_NDVI.py file is the entirely self contained script.
 
 Basic use: 
 
-`python3 Sentinel2_RGBI_NDVI.py -f /path/to/folder`
+`python3 Sentinel2_RGBI_NDVI.py -f /path/to/folder [-rgbi] [-ndvi]`
 
 Add `-ndvi` to tell the script to generate NDVI JP2 files.   
 Add `-rgbi` to tell the script to generate Red, Green, Blue, Near-Infrared JP2 files.   
