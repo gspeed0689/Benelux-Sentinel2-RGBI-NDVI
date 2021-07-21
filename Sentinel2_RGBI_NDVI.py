@@ -5,11 +5,18 @@ import numpy
 debug_level = 0
 
 def sdb(lvl, msg):
-    """Simple debug printer"""
+    """Simple Debug messages
+
+    Args:
+        lvl (int): Integer for a debug, lower the value the more the message will show up
+        msg (str): Message to be printed
+    """
     if lvl <= debug_level:
         print(msg)
 
 def cmd_line():
+    """Grabs the command line arguments when calling the script
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--folder")
     parser.add_argument("-ndvi", action="store_true", default=False)
@@ -17,6 +24,13 @@ def cmd_line():
     return(parser.parse_args())
 
 def rgbi_processing(image_dict_entry, img_dict, d):
+    """Processes a .SAFE file into a JPEG-2000 4-band RGB and Near-Infrared unsigned int16 raster. 
+
+    Args:
+        image_dict_entry (dict): A single entry from main's img_data
+        img_dict (dict): The full img_data
+        d (str): Directory as a string
+    """
     file_list = [img_dict[image_dict_entry]["red"], img_dict[image_dict_entry]["green"], img_dict[image_dict_entry]["blue"], img_dict[image_dict_entry]["infrared"]]
     with rasterio.open(file_list[0]) as src0:
         meta = src0.meta
@@ -31,6 +45,13 @@ def rgbi_processing(image_dict_entry, img_dict, d):
                     dst.write_band(id, src1.read(1))
 
 def ndvi_processing(image_dict_entry, img_dict, d):
+    """Processes a .SAFE file into a JPEG-2000 NDVI signed int16 raster. 
+
+    Args:
+        image_dict_entry (dict): A single entry from main's img_data
+        img_dict (dict): The full img_data
+        d (str): Directory as a string
+    """
     band_infrared, band_red, ndvi_kwargs = rasterio.open(img_dict[image_dict_entry]["infrared"]).read(1), rasterio.open(img_dict[image_dict_entry]["red"]).read(1), rasterio.open(img_dict[image_dict_entry]["infrared"]).meta
     numpy.seterr(divide='ignore', invalid='ignore')
     ndvi = ((band_infrared.astype(float) - band_red.astype(float)) / (band_infrared + band_red)) * (2**15)
@@ -45,6 +66,12 @@ def ndvi_processing(image_dict_entry, img_dict, d):
             dst.write_band(1, ndvi.astype(rasterio.int16))
 
 def main():
+    """The main part of the program, requires command line arguments to function. 
+        Works with Sentinel 2 .SAFE unzipped folders in a single directory. 
+        Will process a .SAFE into JPEG-2000 files for easy usage in GIS. 
+        Does not take into account a lot of data that is also included with a full .SAFE directory, 
+            should only be used for visualization purposes. 
+    """
     args = cmd_line()
     d = args.folder
     rgbi_process = args.rgbi
